@@ -21,8 +21,6 @@ class Chunk:
 
 def chunk_text(doc_id: str, text: str, size: int = 512, overlap: int = 64) -> list[Chunk]:
     """Split text into overlapping chunks.
-
-    TODO (you implement):
       - Split `text` into windows of ~`size` characters with `overlap` between
         consecutive windows. Overlap matters: it keeps a sentence that straddles
         a boundary retrievable from both chunks.
@@ -33,4 +31,26 @@ def chunk_text(doc_id: str, text: str, size: int = 512, overlap: int = 64) -> li
       - Prefer splitting on sentence/paragraph boundaries rather than raw chars,
         so you don't cut mid-sentence. Compare retrieval quality before/after.
     """
-    raise NotImplementedError
+    if not text:
+        return []
+    
+    chunks = []
+    
+    step = size - overlap
+
+    index = 0
+
+    start = 0
+
+    while start <len(text):
+        end = min(start + size, len(text))
+        piece = text[start:end]
+
+        chunks.append(Chunk(doc_id, f"{doc_id}:{index}", piece, start, end))
+
+        start += step
+        index += 1
+        if end == len(text):
+            break
+
+    return chunks
