@@ -1,0 +1,3 @@
+{"question": "What is hybrid retrieval?", "must_include": ["BM25", "dense"]}
+{"question": "What does a PID controller do in ad pacing?", "must_include": ["pace", "spend"]}
+{"question": "What is retrieval-augmented generation?", "must_include": ["retriever", "generat"]}
